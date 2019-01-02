@@ -1,5 +1,7 @@
 package com.crypto.tradingsimulator.models.user;
 
+import com.crypto.tradingsimulator.models.trading.Transaction;
+import com.crypto.tradingsimulator.models.trading.UserCoins;
 import lombok.*;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
@@ -48,10 +50,25 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_transactions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "transaction_id"))
+    private Set<Transaction> transactions;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_coins",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "usercoin_id"))
+    private Set<UserCoins> userCoins;
+
     public User(String name, String username, String email, String password) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User() {
     }
 }

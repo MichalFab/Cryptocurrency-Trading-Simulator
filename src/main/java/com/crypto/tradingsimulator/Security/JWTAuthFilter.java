@@ -20,16 +20,9 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(JWTAuthFilter.class);
 
     @Autowired
-    public JWTAuthFilter(JWTTokenProvider tokenProvider, SimulatorUserDetailsService userDetailsService) {
-        this.tokenProvider = tokenProvider;
-        this.userDetailsService = userDetailsService;
-    }
-
-    public JWTAuthFilter() {
-    }
-
     private JWTTokenProvider tokenProvider;
 
+    @Autowired
     private SimulatorUserDetailsService userDetailsService;
 
     @Override
