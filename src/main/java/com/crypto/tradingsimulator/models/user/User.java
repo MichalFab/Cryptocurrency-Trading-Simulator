@@ -1,9 +1,11 @@
 package com.crypto.tradingsimulator.models.user;
 
 import com.crypto.tradingsimulator.models.trading.Transaction;
+import com.crypto.tradingsimulator.models.trading.UserBalance;
 import com.crypto.tradingsimulator.models.trading.UserCoins;
 import lombok.*;
 import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -61,6 +63,12 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "usercoin_id"))
     private Set<UserCoins> userCoins;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_balance",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "balance_id"))
+    private UserBalance userBalance;
 
     public User(String name, String username, String email, String password) {
         this.name = name;
