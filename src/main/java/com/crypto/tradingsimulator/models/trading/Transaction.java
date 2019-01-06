@@ -1,5 +1,7 @@
 package com.crypto.tradingsimulator.models.trading;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,17 +14,18 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long fromCoinId;
+    private String coinId;
 
-    private Long toCoinId;
+    private BigDecimal amount;
 
-    private BigDecimal amountFrom;
-
-    private BigDecimal amountTo;
+    @Enumerated(EnumType.STRING)
+    @NaturalId
+    @Column(length = 60)
+    private TransactionType transactionType;
 
     private LocalDate date;
 
-    private BigDecimal saldoBefore;
+    private BigDecimal balanceBefore;
 
-    private BigDecimal saldoAfter;
+    private BigDecimal balanceAfter;
 }

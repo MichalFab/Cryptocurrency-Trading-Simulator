@@ -1,4 +1,4 @@
-package com.crypto.tradingsimulator.Repositories.user;
+package com.crypto.tradingsimulator.Repositories.trading;
 
 import com.crypto.tradingsimulator.models.trading.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;

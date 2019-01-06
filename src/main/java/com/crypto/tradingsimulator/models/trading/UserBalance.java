@@ -1,11 +1,15 @@
 package com.crypto.tradingsimulator.models.trading;
 
 import com.crypto.tradingsimulator.models.user.User;
+import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Data
+@Builder
 @Table(name = "balance")
 public class UserBalance {
 
